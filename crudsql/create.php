@@ -1,5 +1,5 @@
 <?php
-    include ('config/dbconnect.php');
+    include ('../config/dbconnect.php');
     
    
             
@@ -27,19 +27,21 @@
             $targetDir = "uploads/";
 
             $fileExtension = explode('.',$fileName);
+            
             $fileActualExtension = strtolower(end($fileExtension));
             $newFileName = uniqid('',true).".". $fileActualExtension;
             $targetFilePath = $targetDir. $newFileName;
-            echo "Temporary File Name: $tmpFileName<br>";
-            echo "Target File Path: $targetFilePath<br>";
+          
 
            
 
             $allowfileType = array('jpg','png','jpeg');
            
             if(in_array($fileActualExtension,$allowfileType)){
-                if(move_uploaded_file($tmpFileName,"uploads/".$fileName)){
+                if(move_uploaded_file($tmpFileName,"../uploads/".$fileName)){
+                    date_default_timezone_set('Asia/Phnom_Penh');
                     $enrolldate = date("Y-m-d");
+                    echo $enrolldate;
                     $sql = "INSERT INTO students (firstname,lastname,gender,profile,enrolldate) VALUES ('$fname','$lname','$gender','$newFileName','$enrolldate')";
                     try {
                        $conn->exec($sql);
@@ -57,7 +59,7 @@
             else{
                 echo "error invalid type";
             }
-            echo "File Upload Error Code: " . $_FILES["profile"]["error"];
+            
 
 
         }

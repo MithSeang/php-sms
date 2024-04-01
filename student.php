@@ -2,6 +2,7 @@
  <style>
     <?php
         include('style.css');
+        
     ?>
 </style> 
 <!-- sidebar -->
@@ -9,7 +10,7 @@
 <!-- end sidebar -->
 <div class="container-fluid content">
     <?php include('includes/top_header.php'); ?>
-
+    
     <!-- student content -->
     <div class="container-fluid py-3 d-flex justify-content-between ">
         <form class="d-flex " role="search">
@@ -48,12 +49,14 @@
                                         <option value="female">Female</option>
                                     </select>
                                 </div>
-                                <div class="mb-3">
-                                    <!-- <label class="form-label" for="imageSelect">Select image to upload Image</label> -->
-                                    <input type="file" class="form-control" id="imageSelect" name="profile" />
-
+                                <div class="d-flex flex-column mb-3">
+                                    <label for="imageSelect" class="d-flex my-3 align-items-center justify-content-center text-center selectedImage" style="width:100px;height:100px;border:1.5px solid gray ; border-radius:10px">
+                                        <img id="selectedImagePreview"  style="width:100px;height:100px;border:1.5px solid gray ; border-radius:10px;" object-fit:cover > 
+                                    </label>
+                                    <input type="file" class="form-control-file" id="imageSelect" name="profile" onchange="document.getElementById('selectedImagePreview').src = window.URL.createObjectURL(this.files[0])">
                                 </div>
-                                <div class="modal-footer">
+
+                                <div class="modal-footer">  
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" name="close" >Close</button>
                                     <button type="submit" class="btn btn-primary" name="save">Save</button>
                                 </div>
@@ -92,19 +95,20 @@
            if($result->rowCount()>0){
             while($row = $result->fetch(PDO::FETCH_ASSOC)){
               
-                echo "<tr  >";
+                echo "<tr>";
                     echo "<td class='align-data-center'>".$row['id'] ."</td>";
                     echo "<td  >";
-                    echo "<div class='rounded-circle bg-secondary profile-img'  >"
-                    .$row['profile'];
-                    "</div>";
+                    echo "<div class='rounded-circle bg-secondary profile-img'  >";
+                    echo "<img src='../uploads/'".$row['profile']."' style='width:50px; height:50px; object-fit:cover;'  alt='Profile Image'>";
+                    echo "</div>";
+                    
                     echo "</td>";
                     echo "<td class='align-data-center'>".$row['firstname']."</td>";
                     echo "<td class='align-data-center'>".$row['lastname']."</td>";
                     echo "<td class='align-data-center'>".$row['gender']."</td>";
                     echo "<td class='align-data-center'>".$row['enrolldate']."</td>";
                     echo "<td class='align-data-center'>" ;
-                        echo "<div class='drop down '>
+                        echo "<div class='drop down'>
                         <button class='btn  ' type='button' id='action-dropdown' data-bs-toggle='dropdown'>
                             <!--  three dot vertical -->
                             <i class='bi bi-three-dots-vertical'></i>
@@ -134,7 +138,7 @@
            ?>
 
 
-            
+        <script src="script.js" ></script>
 
 
 <?php include('includes/footer.php'); ?>
