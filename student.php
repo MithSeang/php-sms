@@ -49,6 +49,10 @@
                                         <option value="female">Female</option>
                                     </select>
                                 </div>
+                                <div class="mb-3">
+                                    <label for="#enroll">Enroll Date</label><br>
+                                    <input type="date"  id="enroll" name="enroll" >
+                                </div>
                                 <div class="d-flex flex-column mb-3">
                                     <label for="imageSelect" class="d-flex my-3 align-items-center justify-content-center text-center selectedImage" style="width:100px;height:100px;border:1.5px solid gray ; border-radius:10px">
                                         <img id="selectedImagePreview"  style="width:100px;height:100px;border:1.5px solid gray ; border-radius:10px;" object-fit:cover > 
@@ -88,18 +92,18 @@
         <tbody  >
 
            <?php
-          
-           include ('crudsql/create.php');
-           include ('crudsql/read.php');
+            include ('config/dbconnect.php');
+            include ('crudsql/create.php');
+            include ('crudsql/read.php');
+            // include ('crudsql/update.php');
            
            if($result->rowCount()>0){
             while($row = $result->fetch(PDO::FETCH_ASSOC)){
-              
                 echo "<tr>";
                     echo "<td class='align-data-center'>".$row['id'] ."</td>";
                     echo "<td  >";
                     echo "<div class='rounded-circle bg-secondary profile-img'  >";
-                    echo "<img src='../uploads/'".$row['profile']."' style='width:50px; height:50px; object-fit:cover;'  alt='Profile Image'>";
+                    echo "<img src='uploads/{$row['profile']}' alt='Profile'  class='rounded-circle' id='profile-img'>";
                     echo "</div>";
                     
                     echo "</td>";
@@ -116,25 +120,31 @@
                         </button>
                         <ul class='dropdown-menu' aria-labelledby='action-dropdown'>
                             <li>
-                                <a class='dropdown-item d-flex justify-content-center' data-bs-toggle='modal' href=''  >
+                                <a class='dropdown-item d-flex justify-content-center' data-bs-toggle='modal' data-bs-target='#updateStuModalDialog'>
                                     Edit
                                     <i class='bi bi-pencil ms-3'></i>
                                 </a>
-                                <?php include('crudsql/update.php');?>
+                                
+
+
                             </li>
                             <li>
-                                <a class='dropdown-item d-flex justify-content-center' href='delete.php?id={$row['id']}'>
+                                <a class='dropdown-item d-flex justify-content-center' href='crudsql/delete.php?id={$row['id']}'>
                                     Delete
                                     <i class='bi bi-trash ms-3'></i>
                                 </a>
                             </li>
+                    
 
                         </ul>
                     </div>";
+                    
                     echo "</td>";
+                    
                 echo "<tr>";
             }
            }    
+          include('crudsql/edit_modal.php');
            ?>
 
 

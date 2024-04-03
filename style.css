@@ -60,8 +60,12 @@ a:focus {
     display: inline-block ;
     width: 65px;
     height: 65px;
-   
-  
+    
+}
+#profile-img{
+    width:70px; 
+    height:70px;
+    object-fit: cover;
 }
 .align-data-center{
     vertical-align: middle;

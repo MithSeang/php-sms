@@ -3,7 +3,7 @@
     $result = $conn->prepare("SELECT * FROM students");
     $result->execute(); 
     try {
-        echo "Read Success";
+        // echo "Read Success";
     } catch (PDOException $th) {
        echo "Error:" .$th->getMessage();
     }
