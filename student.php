@@ -102,7 +102,7 @@
                 echo "<tr>";
                     echo "<td class='align-data-center'>".$row['id'] ."</td>";
                     echo "<td  >";
-                    echo "<div class='rounded-circle bg-secondary profile-img'  >";
+                    echo "<div class='rounded-circle bg-secondary profile-img'>";
                     echo "<img src='uploads/{$row['profile']}' alt='Profile'  class='rounded-circle' id='profile-img'>";
                     echo "</div>";
                     
@@ -120,10 +120,10 @@
                         </button>
                         <ul class='dropdown-menu' aria-labelledby='action-dropdown'>
                             <li>
-                                <a class='dropdown-item d-flex justify-content-center' data-bs-toggle='modal' data-bs-target='#updateStuModalDialog'>
+                                <button type='button' class='dropdown-item d-flex justify-content-center' data-bs-toggle='modal' data-bs-target='#updateStuModalDialog'>
                                     Edit
                                     <i class='bi bi-pencil ms-3'></i>
-                                </a>
+                                </button>
                                 
 
 
@@ -140,11 +140,12 @@
                     </div>";
                     
                     echo "</td>";
-                    
+
                 echo "<tr>";
             }
+            include('crudsql/edit_modal.php');
+
            }    
-          include('crudsql/edit_modal.php');
            ?>
 
 
