@@ -1,8 +1,8 @@
 <?php 
     include('../config/dbconnect.php');
-
-    if(isset($_GET['id'])){
-        $uid = $_GET['id'];
+    $uid = $_GET['id'];
+    if(isset($_POST['delete'])){
+        
         $sql = "DELETE FROM students WHERE id = '$uid'";
         $isSuccess = $conn->exec($sql);
         if($isSuccess){

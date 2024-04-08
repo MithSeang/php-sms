@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="d-flex flex-column mb-3">
                                     <label for="imageSelect" class="d-flex my-3 align-items-center justify-content-center text-center selectedImage" style="width:100px;height:100px;border:1.5px solid gray ; border-radius:10px">
-                                        <img id="selectedImagePreview"  style="width:100px;height:100px;border:1.5px solid gray ; border-radius:10px;" object-fit:cover > 
+                                        <img id="selectedImagePreview"  style="width:100px;height:100px;border:1.5px solid gray ; border-radius:10px; object-fit:cover;"  > 
                                     </label>
                                     <input type="file" class="form-control-file" id="imageSelect" name="profile" onchange="document.getElementById('selectedImagePreview').src = window.URL.createObjectURL(this.files[0])">
                                 </div>
@@ -120,16 +120,17 @@
                         </button>
                         <ul class='dropdown-menu' aria-labelledby='action-dropdown'>
                             <li>
-                                <button type='button' class='dropdown-item d-flex justify-content-center' data-bs-toggle='modal' data-bs-target='#updateStuModalDialog'>
+                                <button type='button' class='dropdown-item d-flex justify-content-center' data-bs-toggle='modal' data-bs-target='#updateStuModalDialog{$row['id']}'  >
                                     Edit
                                     <i class='bi bi-pencil ms-3'></i>
+                                    
                                 </button>
-                                
+
 
 
                             </li>
                             <li>
-                                <a class='dropdown-item d-flex justify-content-center' href='crudsql/delete.php?id={$row['id']}'>
+                                <a class='dropdown-item d-flex justify-content-center'  data-bs-toggle='modal' data-bs-target='#deleteStuModalDialog{$row['id']}' >
                                     Delete
                                     <i class='bi bi-trash ms-3'></i>
                                 </a>
@@ -142,14 +143,17 @@
                     echo "</td>";
 
                 echo "<tr>";
-            }
-            include('crudsql/edit_modal.php');
+                
+                include ('crudsql/edit_modal.php');
+                include ('crudsql/delete_modal.php');
 
+                
+            }
            }    
            ?>
 
 
-        <script src="script.js" ></script>
+
 
 
 <?php include('includes/footer.php'); ?>

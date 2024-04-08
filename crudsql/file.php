@@ -111,6 +111,7 @@
         //     else{
         //         echo "Error:" . $conn->errorCode();
         //     }
+        // href='crudsql/delete.php?id={$row['id']}'
         //     $conn = null;
         // }
 
